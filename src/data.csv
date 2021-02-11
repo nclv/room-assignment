@@ -1,0 +1,5 @@
+Nom,Voeu 1,Voeu 2,Voeu 3,Voisin 1,Voisin 2,Voisin 3,Voisin 4
+VINCENT Samy,68,37,54,DUPONT Jean,GILLE Durand,,
+DUPONT Jean,54,,,STOMACH Ach,DUPONT Jean,,GILLE Durand
+GILLE Durand,32,31,35,VINCENT Samy,DUPONT Jean,STOMACH Ach,GILLE Durand
+STOMACH Ach,,,,,,,

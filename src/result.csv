@@ -1,0 +1,5 @@
+Nom,Voeu 1,Voeu 2,Voeu 3,Voisin 1,Voisin 2,Voisin 3,Voisin 4,Rooms
+VINCENT Samy,68.0,37.0,54.0,DUPONT Jean,GILLE Durand,,,37
+DUPONT Jean,54.0,,,STOMACH Ach,DUPONT Jean,,GILLE Durand,54
+GILLE Durand,32.0,31.0,35.0,VINCENT Samy,DUPONT Jean,STOMACH Ach,GILLE Durand,35
+STOMACH Ach,,,,,,,,31

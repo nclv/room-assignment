@@ -1,0 +1,5 @@
+Nom,Voeu 1,Voeu 2,Voeu 3,Voisin 1,Voisin 2,Voisin 3,Voisin 4
+A,1,2,3,B,C,,
+B,4,5,6,A,,,
+C,7,8,1,D,,,
+D,2,3,4,A,C,,
