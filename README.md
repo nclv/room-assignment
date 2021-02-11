@@ -10,6 +10,11 @@ Le fichier *debug.log* contient les traces de l'exécution du programme, à savo
 
 ## Utilisation
 
+Commencer par installer les modules nécessaires:
+```bash
+[~/room-assignment]$ pip install -r requirements.txt
+```
+
 Pour afficher les options possibles:
 ```bash
 [~/room-assignment]$ python3 src/solution.py --help
