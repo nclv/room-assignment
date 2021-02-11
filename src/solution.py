@@ -94,15 +94,6 @@ def load_data(filename):
     return data, cost, adj
 
 
-def generate_random_array(row_number, column_number, number_of_values_by_row):
-    array = np.zeros((row_number, column_number), dtype="int8")  # Initialize array
-    idx = np.random.rand(row_number, column_number).argsort(1)[
-        :, :number_of_values_by_row
-    ]
-    array[np.arange(row_number)[:, None], idx] = 1
-    return array
-
-
 def get_adj_rows_max(adj):
     adj += np.transpose(adj)
     adj = np.triu(adj)
@@ -144,46 +135,33 @@ def check_has_wanted_room(cost, row_ind, col_ind):
             logging.info(f"{student} n'a pas la chambre voulue.")
 
 
-def random_bench():
-    student_number, room_number = 150, 150
-    voisins = {n: [n - 1, n + 1] for n in range(room_number)}
-
-    cost = generate_random_array(student_number, room_number, np.random.randint(1, 3))
-    # print(cost)
-    adj = generate_random_array(student_number, student_number, np.random.randint(4))
-    # print(adj)
-
-    adj_argmax, adj_max = get_adj_rows_max(adj)
-    # print(adj_argmax, adj_max)
-    cost = compute_cost(
-        cost, adj_argmax, adj_max, lambda room1, room2: room2 in voisins[room1]
-    )
-    row_ind, col_ind = linear_sum_assignment(cost, maximize=True)
-    result = dict(zip(row_ind, col_ind))
-
-
 def assign(in_filename="data.csv", out_filename="result.csv"):
+    # Récupération de contenu du fichier CSV
     data, cost_dataframe, adj_dataframe = load_data(in_filename)
     _, room_number = cost_dataframe.shape
 
     cost = cost_dataframe.to_numpy()
     adj = adj_dataframe.to_numpy()
-    # print(cost)
-    # print(adj)
 
+    # Génération du dictionnaire des chambres voisines
     voisins = {n: [n - 1, n + 1] for n in range(room_number)}
 
+    # Récupération des maximums et de leurs indices pour chaque ligne de la matrice d'adjacence
     adj_argmax, adj_max = get_adj_rows_max(adj)
     # print(adj_argmax, adj_max)
     cost = compute_cost(
         cost, adj_argmax, adj_max, lambda room1, room2: room2 in voisins[room1]
     )
     logging.debug(f"\nMatrice des coûts (<student>: <wanted room numbers>): \n {cost}")
+
+    # Résolution du problème d'assignation
     row_ind, col_ind = linear_sum_assignment(cost, maximize=True)
     result = pd.Series(cost_dataframe.columns[col_ind], index=cost_dataframe.index[row_ind])
     logging.debug(f"\nRésultat de l'affectation: \n {result}")
+
     data["Rooms"] = result.values
     logging.debug(f"\nDonnées CSV: \n {data}")
+    # Sauvegarde des affectations au format CSV
     data.to_csv(out_filename, index=False)
 
 
@@ -192,4 +170,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # random_bench()

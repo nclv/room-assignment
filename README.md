@@ -12,17 +12,22 @@ Le fichier *debug.log* contient les traces de l'exécution du programme, à savo
 
 Pour afficher les options possibles:
 ```bash
-python3 src/solution.py --help
+[~/room-assignment]$ python3 src/solution.py --help
 ```
 
 Pour tester le programme avec options:
 ```bash
-python3 src/solution.py tests/data.csv tests/result.csv
+[~/room-assignment]$ python3 src/solution.py tests/data.csv tests/result.csv
 ```
 
 Le fichier d'entrée est recherché par défaut dans le répertoire courant sous le nom de *data.csv*. Le fichier de sortie généré par défaut se trouve aussi dans le répertoire courant sous le nom de *result.csv*:
 ```bash
-python3 src/solution.py
+[~/room-assignment]$ python3 src/solution.py
+```
+
+Pour exécuter les tests:
+```bash
+[~/room-assignment]$ nosetests3 -v
 ```
 
 ## Possibilités d'extension
